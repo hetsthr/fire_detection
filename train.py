@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 DATA_DIR = './fire_data'
 NUM_CLASSES = 2
 BATCH_SIZE = 5
-IMG_SIZE = 96
+IMG_SIZE = 32
 CHANNELS = 1
-MODEL_NAME = 'mobilenet'
+MODEL_NAME = 'dnn'
 EPOCHS = 1000
 MODEL_DIR = MODEL_NAME+'_'+str(IMG_SIZE)+'/model_tf/'
 TRAIN_SAMPLES = 900
@@ -28,7 +28,7 @@ def plot_hist(hist):
     plt.plot(hist.history["loss"])
     plt.plot(hist.history["val_loss"])
     plt.title(MODEL_NAME)
-    plt.ylabel('Accuracy')
+    plt.ylabel('Loss')
     plt.xlabel('Epoch')
     plt.legend(["train", "validation"])
     plt.show()
@@ -81,7 +81,7 @@ checkpoint = ModelCheckpoint(
 earlystop = EarlyStopping(
     monitor = 'val_loss',
     min_delta = 0,
-    patience = 25,
+    patience = 30,
     verbose = 1,
     restore_best_weights = True)
 
