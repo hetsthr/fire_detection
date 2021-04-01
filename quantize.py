@@ -2,7 +2,7 @@ from keras.models import load_model
 import tensorflow as tf
 data_dir = './fire_data'
 img_dir = data_dir + '/test/'
-CHANNELS = 1
+CHANNELS = 3
 IMG_SIZE = 96
 MODEL_NAME = ['cnn', 'dnn', 'ds_cnn', 'mobilenet']
 def rep_data_gen():
@@ -38,7 +38,7 @@ for model in MODEL_NAME:
 
     tflite_quant = converter.convert()
 
-    with open(str(MODEL)'_quant.tflite', 'wb') as f:
+    with open(str(MODEL)+'_quant.tflite', 'wb') as f:
         f.write(tflite_quant)
 '''
 !xxd -i cnn_32_quant.tflite > cnn_32.cc
