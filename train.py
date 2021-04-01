@@ -13,11 +13,11 @@ NUM_CLASSES = 2
 BATCH_SIZE = 5
 IMG_SIZE = 96
 CHANNELS = 1
-MODEL_NAME = 'mobilenet'
+MODEL_NAME = 'ds_cnn'
 EPOCHS = 1000
 MODEL_DIR = MODEL_NAME+'_'+str(IMG_SIZE)+'/model_tf/'
 TRAIN_SAMPLES = 900
-VALIDATION_SAMPLES = 0.1*TRAIN_SAMPLES
+VALIDATION_SAMPLES = 0.3*TRAIN_SAMPLES
 if(CHANNELS == 1):
     COLOR_MODE = 'grayscale'
     MODEL_DIR = MODEL_NAME+'_gray'+str(IMG_SIZE)+'/model_tf/'
@@ -28,7 +28,7 @@ def plot_hist(hist):
     plt.plot(hist.history["loss"])
     plt.plot(hist.history["val_loss"])
     plt.title(MODEL_NAME)
-    plt.ylabel('Accuracy')
+    plt.ylabel('Loss')
     plt.xlabel('Epoch')
     plt.legend(["train", "validation"])
     plt.show()
@@ -81,7 +81,7 @@ checkpoint = ModelCheckpoint(
 earlystop = EarlyStopping(
     monitor = 'val_loss',
     min_delta = 0,
-    patience = 25,
+    patience = 30,
     verbose = 1,
     restore_best_weights = True)
 
