@@ -10,10 +10,20 @@ import matplotlib.pyplot as plt
 
 DATA_DIR = './fire_data'
 NUM_CLASSES = 2
+<<<<<<< HEAD
 BATCH_SIZE = 10 
 IMG_SIZE = 32
 CHANNELS = 3
+=======
+BATCH_SIZE = 5
+IMG_SIZE = 32
+CHANNELS = 1
+<<<<<<< HEAD
+MODEL_NAME = 'dnn'
+=======
+>>>>>>> dcfeb8d4e5d1d4ddee671def2d8893eea884485f
 MODEL_NAME = 'ds_cnn'
+>>>>>>> 9f294d5d9ee11079ca7b63a640c7584bcee8ca1d
 EPOCHS = 1000
 MODEL_DIR = MODEL_NAME+'_'+str(IMG_SIZE)+'/model_tf/'
 TRAIN_SAMPLES = 900
