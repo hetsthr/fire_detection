@@ -7,7 +7,7 @@ import numpy as np
 img_dir = 'fire_data/test/'
 MODEL_DIR = 'TRAINED_MODELS'
 CHANNELS = 3
-IMG_SIZE = 96
+IMG_SIZE = 32
 MODELS = ['cnn', 'dnn', 'ds_cnn', 'mobilenet']
 
 labels_dict = {"[0]" : "fire", "[1]" : "non_fire"}
@@ -48,7 +48,7 @@ for MODEL_NAME in MODELS:
     else:
         MODEL_FOLDER = MODEL_NAME + '_rgb'
 
-    MODEL_PATH = MODEL_DIR+'/'+MODEL_FOLDER+'/'+MODEL_NAME+'_'+str(IMG_SIZE)+'/'+MODEL_NAME+'_'+str(IMG_SIZE)+'_float.tflite'
+    MODEL_PATH = MODEL_DIR+'/'+MODEL_FOLDER+'/'+MODEL_NAME+'_'+str(IMG_SIZE)+'/'+MODEL_NAME+'_rgb_'+str(IMG_SIZE)+'_float.tflite'
 
     interpreter = tf.lite.Interpreter(model_path = MODEL_PATH)
     interpreter.allocate_tensors()

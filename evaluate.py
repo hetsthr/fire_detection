@@ -13,7 +13,7 @@ dataset_list = tf.data.Dataset.list_files(img_dir + "*")
 
 MODEL_DIR = './TRAINED_MODELS'
 MODELS = ['cnn','dnn', 'ds_cnn', 'mobilenet']
-CHANNELS = 1
+CHANNELS = 3
 IMG_SIZE = 32
 
 def evaluate_model():
@@ -44,7 +44,7 @@ for MODEL_NAME in MODELS:
 	else:
 		MODEL_FOLDER = MODEL_NAME + "_rgb"
 
-	MODEL_PATH = MODEL_DIR+"/"+MODEL_FOLDER+"/"+MODEL_NAME+"_"+str(IMG_SIZE)+"/"+MODEL_NAME+"_"+str(IMG_SIZE)+'.h5'
+	MODEL_PATH = MODEL_DIR+"/"+MODEL_FOLDER+"/"+MODEL_NAME+"_"+str(IMG_SIZE)+"/"+MODEL_NAME+"_rgb_"+str(IMG_SIZE)+'.h5'
 
 	classifier = load_model(MODEL_PATH)
 

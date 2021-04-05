@@ -3,7 +3,7 @@ from keras.models import load_model
 import tensorflow as tf
 data_dir = './fire_data'
 img_dir = data_dir + '/test/'
-CHANNELS = 1
+CHANNELS = 3
 IMG_SIZE = 32
 MODEL_NAME = ['cnn', 'ds_cnn', 'mobilenet']
 def rep_data_gen():
@@ -20,7 +20,7 @@ for model in MODEL_NAME:
     if CHANNELS == 1:
         MODEL = model+'_gray_'+str(IMG_SIZE)
     else:
-        MODEL = model+'_'+str(IMG_SIZE)
+        MODEL = model+'_rgb_'+str(IMG_SIZE)
 
     converter = tf.compat.v1.lite.TFLiteConverter.from_keras_model_file(MODEL+'.h5')
 
