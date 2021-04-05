@@ -1,10 +1,11 @@
+import os
 from keras.models import load_model
 import tensorflow as tf
 data_dir = './fire_data'
 img_dir = data_dir + '/test/'
-CHANNELS = 3
-IMG_SIZE = 96
-MODEL_NAME = ['cnn', 'dnn', 'ds_cnn', 'mobilenet']
+CHANNELS = 1
+IMG_SIZE = 32
+MODEL_NAME = ['cnn', 'ds_cnn', 'mobilenet']
 def rep_data_gen():
     dataset_list = tf.data.Dataset.list_files(img_dir + '*')
     for i in range(100):
@@ -20,7 +21,8 @@ for model in MODEL_NAME:
         MODEL = model+'_gray_'+str(IMG_SIZE)
     else:
         MODEL = model+'_'+str(IMG_SIZE)
-    converter = tf.compat.v1.lite.TFLiteConverter.from_keras_model_file(str(MODEL)+'.h5')
+
+    converter = tf.compat.v1.lite.TFLiteConverter.from_keras_model_file(MODEL+'.h5')
 
     tflite_float = converter.convert()
 
@@ -40,10 +42,11 @@ for model in MODEL_NAME:
 
     with open(str(MODEL)+'_quant.tflite', 'wb') as f:
         f.write(tflite_quant)
-'''
-!xxd -i cnn_32_quant.tflite > cnn_32.cc
+    
+    tflite_model = str(MODEL)+'_quant.tflite'
+    cc_model = str(MODEL)+'.cc'
+    c1 = 'xxd -i '+tflite_model+' > '+cc_model
+    os.system(c1)
+    c3 = "tail "+cc_model
+    os.system(c3)
 
-REPLACE_TEXT = 'cnn_96_quant.tflite'.replace('/', '_').replace('.','_')
-!sed -i 's/'{REPLACE_TEXT}'/g_model/g' 'cnn_96.cc'
-!tail cnn_96.cc
-'''

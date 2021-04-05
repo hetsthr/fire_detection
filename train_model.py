@@ -79,15 +79,15 @@ def get_model(model_name, img_size, channels, num_classes=2, shallow=True, alpha
         model.add(Convolution2D(int(1024 * alpha), (1,1), strides=(1,1), padding="same", use_bias=False))
         model.add(BatchNormalization())
         model.add(Activation('relu'))
-
-        model.add(GlobalAveragePooling2D())
+        model.add(Flatten())
         model.add(Dense(num_classes, activation='softmax'))
 
     if(model_name == 'cnn'):
-        model.add(Conv2D(64, (4,4), padding='same', activation='relu'))
+        model.add(Conv2D(32, (4,4), padding='same', activation='relu'))
         model.add(MaxPool2D(2,2))
         model.add(Conv2D(64, (2,2), padding='same', activation='relu'))
-        model.add(GlobalAveragePooling2D())
+        model.add(MaxPool2D(3,3))
+        model.add(Flatten())
         model.add(Dense(num_classes, activation='softmax'))
     
     if(model_name == 'ds_cnn'):
@@ -101,15 +101,15 @@ def get_model(model_name, img_size, channels, num_classes=2, shallow=True, alpha
         model.add(Convolution2D(int(1024 * alpha), (1,1), strides=(1,1), padding="same", use_bias=False))
         model.add(BatchNormalization())
         model.add(Activation('relu'))
-
+        model.add(MaxPool2D(2,2))
         model.add(DepthwiseConv2D(3, (1,1), padding="same", use_bias=False))
         model.add(BatchNormalization())
         model.add(Activation('relu'))
         model.add(Convolution2D(int(1024 * alpha), (1,1), strides=(1,1), padding="same", use_bias=False))
         model.add(BatchNormalization())
         model.add(Activation('relu'))
-
-        model.add(GlobalAveragePooling2D())
+        model.add(MaxPool2D(3,3))
+        model.add(Flatten())
         model.add(Dense(num_classes, activation='softmax'))
 
     if(model_name == 'dnn'):

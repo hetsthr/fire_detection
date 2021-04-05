@@ -12,8 +12,8 @@ img_dir = 'fire_data/test/'
 dataset_list = tf.data.Dataset.list_files(img_dir + "*")
 
 MODEL_DIR = './TRAINED_MODELS'
-MODELS = ['cnn', 'dnn', 'ds_cnn', 'mobilenet']
-CHANNELS = 3
+MODELS = ['cnn','dnn', 'ds_cnn', 'mobilenet']
+CHANNELS = 1
 IMG_SIZE = 32
 
 def evaluate_model():

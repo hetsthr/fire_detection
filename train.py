@@ -10,14 +10,14 @@ import matplotlib.pyplot as plt
 
 DATA_DIR = './fire_data'
 NUM_CLASSES = 2
-BATCH_SIZE = 5
-IMG_SIZE = 96
-CHANNELS = 1
+BATCH_SIZE = 10 
+IMG_SIZE = 32
+CHANNELS = 3
 MODEL_NAME = 'ds_cnn'
 EPOCHS = 1000
 MODEL_DIR = MODEL_NAME+'_'+str(IMG_SIZE)+'/model_tf/'
 TRAIN_SAMPLES = 900
-VALIDATION_SAMPLES = 0.3*TRAIN_SAMPLES
+VALIDATION_SAMPLES = 0.2*TRAIN_SAMPLES
 if(CHANNELS == 1):
     COLOR_MODE = 'grayscale'
     MODEL_DIR = MODEL_NAME+'_gray'+str(IMG_SIZE)+'/model_tf/'
@@ -85,7 +85,7 @@ earlystop = EarlyStopping(
     verbose = 1,
     restore_best_weights = True)
 
-callbacks = [earlystop, checkpoint]
+callbacks = [checkpoint]
 
 model.compile(
     loss = 'categorical_crossentropy',
